@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+COUNTRIES
+<br>
+<br>
+<!--<th:block th:text="${country.getName()}">-->
+<!--    <br>-->
+<!--</th:block>-->
+<th:block th:if="${countries}">
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="country:${countries}" th:object="${country}">
+            <td ><a th:text="*{id}" th:href="@{/{id}(id=*{id})}"></a> </td>
+            <td th:text="*{name}"></td>
+<!--            <td th:text="*{postcode}"></td>-->
+        </tr>
+        </tbody>
+    </table>
+</body>
+</html>
