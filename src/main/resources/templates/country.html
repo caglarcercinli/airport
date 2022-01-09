@@ -8,21 +8,19 @@
 AIRPORTS
 <br>
 <br>
-<th:block th:if="${airports}">
+<th:block th:if="${airportsAndRunaways}">
   <table>
     <thead>
     <tr>
-      <th>Id</th>
-      <th>Ident</th>
-      <th>Runaways</th>
+      <th>Airports and Runways</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="airport:${airports}" th:object="${airport}">
-      <td ><a th:text="*{id}"></a> </td>
-      <td th:text="*{ident}"></td>
+    <tr th:each="airportAndRunaways:${airportsAndRunaways}">
+      <td th:text="${airportAndRunaways}"></td>
     </tr>
     </tbody>
   </table>
+</th:block>
 </body>
 </html>

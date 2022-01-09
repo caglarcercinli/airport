@@ -17,34 +17,41 @@ import java.util.List;
 public class IndexController {
     private final AirportService airportService;
     private final CountryService countryService;
+//    private final RunawayService runawayService;
 
     public IndexController(AirportService airportService, CountryService countryService) {
         this.airportService = airportService;
         this.countryService = countryService;
+//        this.runawayService = runawayService;
     }
 
     @GetMapping
     public ModelAndView index(){
         var modelAndView=new ModelAndView("index");
-//        List<Long> ids = new ArrayList<>();
         List<Country> countries = new ArrayList<>();
-
         for (Country country: countryService.findAll()) {
             countries.add(country);
-            System.out.println(country.getId());
         }
-//        modelAndView.addObject("ids",ids);
         modelAndView.addObject("countries",countries);
         return modelAndView;
     }
     @GetMapping("{countryId}")
     public ModelAndView index2(@PathVariable long countryId){
-        var modelAndView = new ModelAndView("country","airportsandrunways",null);
-//        var country=countryService.findById(302676);
-//        for (var airport:country.getAirports()) {
+        var modelAndView = new ModelAndView("country");
+        var country=countryService.findById(countryId);
+        List<String> airportsAndRunaways = new ArrayList<>();
+        String text = " ";
+        for (var airport: country.getAirports()) {
 //            System.out.println(airport.getIdent());
-//        }
-        modelAndView.addObject("airports",countryService.findById(countryId).getAirports());
+            text = airport.getIdent();
+            for (var runwaway: airport.getRunways()) {
+                text = text.concat(" ").concat(runwaway.getLe_ident()).concat(" ");
+            }
+            System.out.println(text);
+            airportsAndRunaways.add(text);
+        }
+
+        modelAndView.addObject("airportsAndRunaways",airportsAndRunaways);
         return modelAndView;
     }
 }

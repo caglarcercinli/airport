@@ -1,6 +1,8 @@
 package com.example.airport.domains;
 
 import javax.persistence.*;
+import java.util.Collections;
+import java.util.List;
 
 @Entity
 @Table(name = "airports")
@@ -13,6 +15,8 @@ public class Airport {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "iso_country", referencedColumnName = "code", insertable = false, updatable = false)
     private Country country;
+    @OneToMany(mappedBy = "airport")
+    private List<Runaway> runaways;
 
     public Airport(long id, String ident) {
         this.id = id;
@@ -33,5 +37,8 @@ public class Airport {
 
     public Country getCountry() {
         return country;
+    }
+    public List<Runaway> getRunways() {
+        return Collections.unmodifiableList(runaways);
     }
 }
