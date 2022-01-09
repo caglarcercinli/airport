@@ -10,13 +10,13 @@ public class Airport {
     private long id;
     @Column(name = "ident")
     private String ident;
-    @Column(name = "iso_country")
-    private String iso_country;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "iso_country", referencedColumnName = "code", insertable = false, updatable = false)
+    private Country country;
 
-    public Airport(long id, String ident, String iso_country) {
+    public Airport(long id, String ident) {
         this.id = id;
         this.ident = ident;
-        this.iso_country = iso_country;
     }
 
     protected Airport() {
@@ -31,7 +31,7 @@ public class Airport {
         return ident;
     }
 
-    public String getIso_country() {
-        return iso_country;
+    public Country getCountry() {
+        return country;
     }
 }

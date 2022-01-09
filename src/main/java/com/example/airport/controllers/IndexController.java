@@ -40,6 +40,11 @@ public class IndexController {
     @GetMapping("{countryId}")
     public ModelAndView index2(@PathVariable long countryId){
         var modelAndView = new ModelAndView("country","airportsandrunways",null);
+//        var country=countryService.findById(302676);
+//        for (var airport:country.getAirports()) {
+//            System.out.println(airport.getIdent());
+//        }
+        modelAndView.addObject("airports",countryService.findById(countryId).getAirports());
         return modelAndView;
     }
 }

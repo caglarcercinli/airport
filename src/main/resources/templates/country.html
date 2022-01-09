@@ -5,27 +5,24 @@
   <title>Title</title>
 </head>
 <body>
-COUNTRY INFO
+AIRPORTS
 <br>
 <br>
-<!--<th:block th:text="${country.getName()}">-->
-<!--    <br>-->
-<!--</th:block>-->
-<!--<th:block th:if="${countries}">-->
-<!--  <table>-->
-<!--    <thead>-->
-<!--    <tr>-->
-<!--      <th>Id</th>-->
-<!--      <th>Name</th>-->
-<!--    </tr>-->
-<!--    </thead>-->
-<!--    <tbody>-->
-<!--    <tr th:each="country:${countries}" th:object="${country}">-->
-<!--      <td ><a th:text="*{id}" th:href="@{/{id}(id=*{id})}"></a> </td>-->
-<!--      <td th:text="*{name}"></td>-->
-<!--      &lt;!&ndash;            <td th:text="*{postcode}"></td>&ndash;&gt;-->
-<!--    </tr>-->
-<!--    </tbody>-->
-<!--  </table>-->
+<th:block th:if="${airports}">
+  <table>
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Ident</th>
+      <th>Runaways</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="airport:${airports}" th:object="${airport}">
+      <td ><a th:text="*{id}"></a> </td>
+      <td th:text="*{ident}"></td>
+    </tr>
+    </tbody>
+  </table>
 </body>
 </html>

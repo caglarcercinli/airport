@@ -18,4 +18,9 @@ public class CountryServiceImp implements CountryService{
     public List<Country> findAll() {
         return countryRepository.findAll();
     }
+
+    @Override
+    public Country findById(long id) {
+        return countryRepository.findById(id);
+    }
 }
